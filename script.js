@@ -126,6 +126,14 @@ if (nav && navList) {
       menuButton.setAttribute('aria-label', 'Open navigation');
     });
   });
+
+  document.addEventListener('click', event => {
+    if (nav.classList.contains('menu-open') && !nav.contains(event.target)) {
+      nav.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open navigation');
+    }
+  });
 }
 
 // ── Rotating Hero Role ────────────────────────────────────────
