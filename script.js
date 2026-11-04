@@ -21,17 +21,15 @@ if (openingScreen) {
   }
 
   openingScreen.addEventListener('mousemove', event => {
-    if (!prefersReduced) {
-      const x = event.clientX / window.innerWidth - 0.5;
-      const y = event.clientY / window.innerHeight - 0.5;
-      openingScreen.style.setProperty('--pointer-x', `${x * -18}px`);
-      openingScreen.style.setProperty('--pointer-y', `${y * -18}px`);
+    const x = event.clientX / window.innerWidth - 0.5;
+    const y = event.clientY / window.innerHeight - 0.5;
+    openingScreen.style.setProperty('--pointer-x', `${x * -18}px`);
+    openingScreen.style.setProperty('--pointer-y', `${y * -18}px`);
 
-      const now = performance.now();
-      if (now - lastRippleTime > 520) {
-        lastRippleTime = now;
-        createRipple(event);
-      }
+    const now = performance.now();
+    if (now - lastRippleTime > 520) {
+      lastRippleTime = now;
+      createRipple(event);
     }
   });
 
@@ -98,8 +96,6 @@ function updateScrollProgress() {
 window.addEventListener('scroll', updateScrollProgress, { passive: true });
 updateScrollProgress();
 
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 // ── Mobile Navigation ─────────────────────────────────────────
 const nav = document.querySelector('nav');
 const navList = nav?.querySelector('ul');
@@ -138,7 +134,7 @@ if (nav && navList) {
 
 // ── Rotating Hero Role ────────────────────────────────────────
 const roleText = document.getElementById('role-text');
-if (roleText && !prefersReduced) {
+if (roleText) {
   const roles = ['Flutter Developer', 'Full-Stack Developer', 'UI/UX Designer'];
   let roleIndex = 0;
 
@@ -193,7 +189,7 @@ if (revealElements.length > 0) {
 
 // ── Ambient Cursor Spotlight (Desktop) ────────────────────────
 const glow = document.querySelector('.cursor-glow');
-if (glow && window.matchMedia('(pointer: fine)').matches && !prefersReduced) {
+if (glow && window.matchMedia('(pointer: fine)').matches) {
   let mouseX = -500;
   let mouseY = -500;
   let currentX = -500;
@@ -244,7 +240,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 
@@ -261,7 +257,7 @@ serviceDetails.forEach(detail => {
 
 
 // ── Interactive Subtle 3D Card Hover Tilt ────────────────────
-if (!prefersReduced && window.matchMedia('(pointer: fine)').matches) {
+if (window.matchMedia('(pointer: fine)').matches) {
   const cards = document.querySelectorAll('.slot');
   cards.forEach(card => {
     card.addEventListener('mousemove', e => {

@@ -50,8 +50,8 @@ body.intro-active {
 
 .frame {
   transition: opacity 1s cubic-bezier(.16, 1, .3, 1),
-              transform 1.15s cubic-bezier(.16, 1, .3, 1),
-              filter 1s ease;
+    transform 1.15s cubic-bezier(.16, 1, .3, 1),
+    filter 1s ease;
 }
 
 body.intro-active .frame,
@@ -72,8 +72,8 @@ body.intro-active .scroll-progress {
   outline: none;
   clip-path: circle(150% at 50% 50%);
   transition: clip-path 1.35s cubic-bezier(.76, 0, .24, 1),
-              opacity .8s ease,
-              visibility .8s ease;
+    opacity .8s ease,
+    visibility .8s ease;
 }
 
 .opening-screen.is-leaving {
@@ -221,28 +221,58 @@ body.intro-active .scroll-progress {
 }
 
 @keyframes waterDrift {
-  from { transform: translate3d(-1%, -1%, 0) scale(1); }
-  to { transform: translate3d(2%, 1%, 0) scale(1.04); }
+  from {
+    transform: translate3d(-1%, -1%, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(2%, 1%, 0) scale(1.04);
+  }
 }
 
 @keyframes causticWave {
-  from { transform: translateX(-4%) rotate(-7deg) scaleY(.7); }
-  to { transform: translateX(5%) rotate(7deg) scaleY(1.3); }
+  from {
+    transform: translateX(-4%) rotate(-7deg) scaleY(.7);
+  }
+
+  to {
+    transform: translateX(5%) rotate(7deg) scaleY(1.3);
+  }
 }
 
 @keyframes bubbleRise {
-  0% { transform: translate3d(0, 0, 0) scale(.7); opacity: 0; }
-  12% { opacity: .65; }
-  100% { transform: translate3d(35px, -115vh, 0) scale(1.25); opacity: 0; }
+  0% {
+    transform: translate3d(0, 0, 0) scale(.7);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: .65;
+  }
+
+  100% {
+    transform: translate3d(35px, -115vh, 0) scale(1.25);
+    opacity: 0;
+  }
 }
 
 @keyframes rippleExpand {
-  from { transform: scale(.2); opacity: .95; }
-  to { transform: scale(5.5); opacity: 0; }
+  from {
+    transform: scale(.2);
+    opacity: .95;
+  }
+
+  to {
+    transform: scale(5.5);
+    opacity: 0;
+  }
 }
 
 @keyframes hintPulse {
-  50% { transform: scale(1.08); background: rgba(255, 255, 255, .12); }
+  50% {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, .12);
+  }
 }
 
 a {
@@ -339,8 +369,11 @@ nav {
   -webkit-backdrop-filter: blur(0);
   font-family: var(--font-body);
   font-size: .85rem;
-  animation: heroFadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   transition: background-color .3s ease, border-color .3s ease, backdrop-filter .3s ease, box-shadow .3s ease;
+}
+
+body:not(.intro-active) nav {
+  animation: heroFadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 nav.is-scrolled {
@@ -531,6 +564,9 @@ nav ul sup {
   overflow: visible;
   flex: 1.15 1 0;
   min-width: 0;
+}
+
+body:not(.intro-active) .hero-name-wrap {
   animation: heroNameReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -585,6 +621,9 @@ nav ul sup {
   margin-top: clamp(-4rem, -7vw, -6rem);
   position: relative;
   z-index: 2;
+}
+
+body:not(.intro-active) .hero-photo-wrap {
   animation: heroPhotoEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
@@ -726,6 +765,9 @@ nav ul sup {
   align-items: flex-start;
   gap: 2rem;
   margin-top: clamp(1rem, 2vw, 2rem);
+}
+
+body:not(.intro-active) .hero-info {
   animation: heroSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 
@@ -1831,6 +1873,7 @@ footer {
 
 /* Disable desktop hover transforms on touch devices to avoid stuck states */
 @media (hover: none) {
+
   .btn:hover,
   .collab-btn:hover,
   .contact-btn:hover,
@@ -1839,23 +1882,5 @@ footer {
   .chips li:hover,
   .slot:hover {
     transform: none !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .cursor-glow {
-    display: none !important;
   }
 }
