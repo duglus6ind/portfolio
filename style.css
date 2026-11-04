@@ -83,6 +83,10 @@ body.intro-active .scroll-progress {
   pointer-events: none;
 }
 
+.opening-picture {
+  display: contents;
+}
+
 .opening-image {
   position: absolute;
   inset: -3%;
