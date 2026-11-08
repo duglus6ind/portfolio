@@ -587,7 +587,7 @@ body:not(.intro-active) .hero-name-wrap {
 }
 
 .name {
-  font-size: clamp(3.2rem, 11.5vw, 10rem);
+  font-size: clamp(4rem, 13vw, 12rem);
   line-height: .92;
   letter-spacing: -.03em;
   text-transform: uppercase;
